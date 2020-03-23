@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "226820877674",
+    "firebase_url": "https://foodget-cbe0d.firebaseio.com",
+    "project_id": "foodget-cbe0d",
+    "storage_bucket": "foodget-cbe0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226820877674:android:3a6ba97b10307256b58913",
+        "android_client_info": {
+          "package_name": "com.jojonicho.foodget"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "226820877674-vb7s3ggneeaisdaj97c655pe696umvq2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jojonicho.foodget",
+            "certificate_hash": "383c54cfcfefba884783f0e26665fa927b94adf0"
+          }
+        },
+        {
+          "client_id": "226820877674-cial7e69lnqbk2d9f9m97u7qjl9ciop1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2KhT0nRzJLell3H9LZ2rznYeKOkwxuFs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226820877674-cial7e69lnqbk2d9f9m97u7qjl9ciop1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

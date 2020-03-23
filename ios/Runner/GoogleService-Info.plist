@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>226820877674-ppi04t1oift0qs0iad4n2pql8hvlk8ur.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.226820877674-ppi04t1oift0qs0iad4n2pql8hvlk8ur</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>226820877674-vb7s3ggneeaisdaj97c655pe696umvq2.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBGMtHfOQxBst-FNoEf4Za6dsOHxJjgim0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>226820877674</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.jojonicho.foodget</string>
+	<key>PROJECT_ID</key>
+	<string>foodget-cbe0d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>foodget-cbe0d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:226820877674:ios:9fa6326c8fadeb63b58913</string>
+	<key>DATABASE_URL</key>
+	<string>https://foodget-cbe0d.firebaseio.com</string>
+</dict>
+</plist>

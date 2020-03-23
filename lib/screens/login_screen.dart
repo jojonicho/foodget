@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodget/services/auth.dart';
+import 'package:foodget/models/models.dart';
 
 import 'home_screen.dart';
 
@@ -67,33 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return OutlineButton(
       splashColor: Colors.grey,
       onPressed: () {
-        Future<FirebaseUser> user = signInWithGoogle();
-
-        // FutureBuilder(
-        //     future: signInWithGoogle(),
-        //     builder: (context, snapshot) {
-        //       if (!snapshot.hasData) {
-        //         Navigator.of(context).push(
-        //           MaterialPageRoute(
-        //             builder: (context) {
-        //               return HomeScreen(user: snapshot.data);
-        //             },
-        //           ),
-        //         );
-        //       }
-        //       else {
-        //         return CircularProgressIndicator();
-        //       }
-        //     });
-        if (user != null) {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) {
-                return HomeScreen(user: user);
-              },
-            ),
-          );
-        }
+        signIn();
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
       highlightElevation: 0,
@@ -119,5 +94,36 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  signIn() async{
+    User user = await getUser();
+    if (user != null) {
+      Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return HomeScreen(user: user);
+            },
+          ),
+        );
+    }
+  }
+
+  User _userFromFirebaseUser(FirebaseUser user) {
+    return user != null
+        ? User(
+            displayName: user.displayName,
+            email: user.email,
+            photoUrl: user.photoUrl)
+        : null;
+  }
+
+  Future<User> getUser() async {
+    try {
+      FirebaseUser user = await signInWithGoogle();
+      return _userFromFirebaseUser(user);
+    } catch (err) {
+      return null;
+    }
   }
 }

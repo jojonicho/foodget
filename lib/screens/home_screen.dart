@@ -1,3 +1,4 @@
+import 'package:flip_box_bar/flip_box_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:foodget/models/models.dart';
 import 'package:foodget/widgets/widgets.dart';
@@ -15,11 +16,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   _HomeScreenState({@required this.user});
 
-  // var appColors = [
-  //   Color.fromRGBO(231, 129, 109, 1.0),
-  //   Color.fromRGBO(99, 138, 223, 1.0),
-  //   Color.fromRGBO(111, 194, 173, 1.0)
-  // ];
   var appColors = [
     Colors.pink,
     Colors.amber,
@@ -55,6 +51,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   static var numDay = now.day;
   var curDay = day[(numDay - 1) % 7];
   var curMonth = month[now.month - 1];
+
+  int navIndex = 1;
 
   var cardsList = [
     CardItemModel("Breakfast", Icons.account_circle, 9, 0.83),
@@ -95,33 +93,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        user.photoUrl,
-                      ),
-                      radius: 20,
-                      backgroundColor: Colors.transparent,
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            user.displayName.split(" ")[0],
-                            style: TextStyle(
-                                fontSize: 17,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                      ],
-                    ),
-                    LogoutButton(),
-                  ],
-                ),
+                UserView(user: user),
                 SizedBox(height: 40),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,19 +121,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0)),
                                 child: Container(
-                                  width: 250.0,
+                                  width: 275.0,
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    // crossAxisAlignment:CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:MainAxisAlignment.spaceBetween,
                                           children: <Widget>[
                                             Icon(
                                               cardsList[position].icon,
@@ -177,8 +148,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Padding(
                                               padding:
@@ -198,16 +168,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                       vertical: 4.0),
                                               child: Text(
                                                 "${cardsList[position].cardTitle}",
-                                                style:
-                                                    TextStyle(fontSize: 28.0),
+                                                style: TextStyle(fontSize: 28.0),
                                               ),
                                             ),
                                             Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: LinearProgressIndicator(
-                                                value: cardsList[position]
-                                                    .taskCompletion,
+                                                value: cardsList[position].taskCompletion,
                                               ),
                                             ),
                                           ],
@@ -216,21 +184,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     ],
                                   ),
                                 ),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0)),
                               ),
                             ),
+                            onTap: (){},
                             onHorizontalDragEnd: (details) {
                               animationController = AnimationController(
-                                  duration: Duration(milliseconds: 75),
+                                  duration: Duration(milliseconds: 275),
                                   vsync: this);
                               curvedAnimation = CurvedAnimation(
                                   parent: animationController,
                                   curve: Curves.fastOutSlowIn);
                               animationController.addListener(() {
                                 setState(() {
-                                  currentColor =
-                                      colorTween.evaluate(curvedAnimation);
+                                  currentColor = colorTween.evaluate(curvedAnimation);
                                 });
                               });
 
@@ -266,8 +232,36 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ],
                 )
               ],
-            )),
-          )),
+            )
+            ),
+          )
+        ),
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.grey[800],
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.business),
+          title: Text('Business'),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          title: Text('Home'),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.school),
+          title: Text('School'),
+        ),
+      ],
+      currentIndex: navIndex,
+      selectedItemColor: Colors.grey[200],
+      onTap: (int newIndex) {
+        setState(() {
+          navIndex = newIndex;
+        });
+      },
+    ),
     );
   }
 }

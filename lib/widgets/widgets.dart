@@ -1,1 +1,1 @@
-export 'package:foodget/widgets/logout_button.dart';
+export 'package:foodget/widgets/user_view.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodget/models/models.dart';
+import 'package:foodget/screens/meal_detail.dart';
 import 'package:foodget/widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -186,7 +187,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 ),
                               ),
                             ),
-                            onTap: (){},
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return MealDetail(
+                                      mealType: cardsList[position].cardTitle,
+                                      color: appColors[position],
+                                      );
+                                  },
+                                ),
+                              );
+                            },
                             onHorizontalDragEnd: (details) {
                               animationController = AnimationController(
                                   duration: Duration(milliseconds: 275),

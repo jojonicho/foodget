@@ -29,7 +29,6 @@ dependencies:
   cloud_firestore:
   google_sign_in:
   equatable:
-  flip_box_bar:
 
 dev_dependencies:
   flutter_test:

@@ -17,47 +17,50 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Container(
         color: Colors.white,
         child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  FlutterLogo(size: 115),
-                  Column(
-                    children: <Widget>[
-                      Text(
-                        "oodget",
-                        style: TextStyle(
-                            color: Colors.blue[400],
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Icon(
-                            Icons.favorite,
-                            color: Colors.pink,
-                            size: 55.0,
-                            semanticLabel: 'issa heart',
-                          ),
-                          Icon(
-                            Icons.local_pizza,
-                            color: Colors.indigo,
-                            size: 55,
-                            semanticLabel: 'issa pizza',
-                          )
-                        ],
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              SizedBox(height: 50),
-              _signInButton(),
-            ],
+          child: Padding(
+            padding: EdgeInsets.all(MediaQuery.of(context).size.width / 6.5),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    FlutterLogo(size: 115),
+                    Column(
+                      children: <Widget>[
+                        Text(
+                          "oodget",
+                          style: TextStyle(
+                              color: Colors.blue[400],
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Icon(
+                              Icons.favorite,
+                              color: Colors.pink,
+                              size: 55.0,
+                              semanticLabel: 'issa heart',
+                            ),
+                            Icon(
+                              Icons.local_pizza,
+                              color: Colors.indigo,
+                              size: 55,
+                              semanticLabel: 'issa pizza',
+                            )
+                          ],
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                SizedBox(height: 50),
+                _signInButton(),
+              ],
+            ),
           ),
         ),
       ),
@@ -112,6 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
   User _userFromFirebaseUser(FirebaseUser user) {
     return user != null
         ? User(
+            id: user.uid,
             displayName: user.displayName,
             email: user.email,
             photoUrl: user.photoUrl)

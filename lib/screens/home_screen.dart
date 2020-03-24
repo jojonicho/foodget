@@ -1,4 +1,3 @@
-import 'package:flip_box_bar/flip_box_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:foodget/models/models.dart';
 import 'package:foodget/widgets/widgets.dart';
@@ -16,10 +15,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   _HomeScreenState({@required this.user});
 
-  var appColors = [
-    Colors.pink,
+  static List<Color> appColors = [
+    Colors.pink[300],
     Colors.amber,
-    Colors.indigo,
+    Colors.indigo[300],
   ];
 
   static var month = [
@@ -36,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     "November",
     "December",
   ];
-  static var day = [
+  static List<String> day = [
     "Monday",
     "Tuesday",
     "Wednesday",
@@ -44,20 +43,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     "Friday",
     "Saturday",
   ];
-  var cardIndex = 0;
+  static int cardIndex = 0;
   ScrollController scrollController;
-  var currentColor = Colors.pink;
+  Color currentColor = appColors[cardIndex];
   static DateTime now = DateTime.now();
   static var numDay = now.day;
-  var curDay = day[(numDay - 1) % 7];
-  var curMonth = month[now.month - 1];
+  String curDay = day[(numDay - 1) % 7];
+  String curMonth = month[now.month - 1];
 
   int navIndex = 1;
 
   var cardsList = [
-    CardItemModel("Breakfast", Icons.account_circle, 9, 0.83),
-    CardItemModel("Lunch", Icons.work, 12, 0.24),
-    CardItemModel("Dinner", Icons.home, 7, 0.32)
+    CardItemModel("Breakfast", Icons.check_circle, 9, false),
+    CardItemModel("Lunch", Icons.check_circle, 12, false),
+    CardItemModel("Dinner", Icons.check_circle, 7, true),
   ];
 
   AnimationController animationController;
@@ -92,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 30),
+                SizedBox(height: 23),
                 UserView(user: user),
                 SizedBox(height: 40),
                 Column(
@@ -104,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       child: Text(
                         "$curDay, $curMonth $numDay",
                         style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.grey[800],
                             fontWeight: FontWeight.w500,
                             fontSize: 27),
                       ),
@@ -124,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15.0)),
                                 child: Container(
-                                  width: 275.0,
+                                  width: MediaQuery.of(context).size.width / 1.5,
                                   child: Column(
                                     // crossAxisAlignment:CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -136,7 +135,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                           children: <Widget>[
                                             Icon(
                                               cardsList[position].icon,
-                                              color: appColors[position],
+                                              color: cardsList[position].taskCompletion == true ? appColors[position] : Colors.grey,
+                                              size: 45,
                                             ),
                                             Icon(
                                               Icons.more_vert,
@@ -175,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: LinearProgressIndicator(
-                                                value: cardsList[position].taskCompletion,
+                                                value: cardsList[position].taskCompletion == true ? 1 : 0,
                                               ),
                                             ),
                                           ],
@@ -216,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 }
                               }
                               setState(() {
-                                scrollController.animateTo((cardIndex) * 256.0,
+                                scrollController.animateTo((cardIndex) * MediaQuery.of(context).size.width / 1.5,
                                     duration: Duration(milliseconds: 350),
                                     curve: Curves.fastOutSlowIn);
                               });

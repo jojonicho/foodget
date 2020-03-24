@@ -31,7 +31,7 @@ class UserView extends StatelessWidget {
                 user.displayName.split(" ")[0],
                 style: TextStyle(
                     fontSize: 17,
-                    color: Colors.grey[900],
+                    color: Colors.grey[800],
                     fontWeight: FontWeight.w600),
               ),
             ),

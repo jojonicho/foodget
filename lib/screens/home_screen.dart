@@ -192,10 +192,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                       vertical: 4.0),
                                               child: Hero(
                                                 tag: cardsList[position].cardTitle,
-                                                child: Text(
-                                                  "${cardsList[position].cardTitle}",
-                                                  style:
-                                                      TextStyle(fontSize: 28.0),
+                                                child: Material(
+                                                  type: MaterialType.transparency,
+                                                  child: Text(
+                                                    "${cardsList[position].cardTitle}",
+                                                    style:
+                                                        TextStyle(fontSize: 28.0),
+                                                  ),
                                                 ),
                                               ),
                                             ),

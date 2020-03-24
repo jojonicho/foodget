@@ -16,7 +16,13 @@ class MealDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Hero(tag:mealType ,child: Text(mealType)),
+        title: Hero(
+          tag:mealType ,
+          child: Material(
+            type: MaterialType.transparency,
+            child: Text(mealType, style: TextStyle(fontSize: 22, color: Colors.white, fontWeight: FontWeight.w500),)
+              )
+            ),
         backgroundColor: color,
       ),
       backgroundColor: color,

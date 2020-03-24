@@ -15,11 +15,12 @@ class MealDetail extends StatelessWidget {
     // );
     return Scaffold(
       appBar: AppBar(
-        title: Text(mealType),
+        elevation: 0,
+        title: Hero(tag:mealType ,child: Text(mealType)),
         backgroundColor: color,
       ),
-      // backgroundColor: ,
-      body: Center(child: Icon(Icons.local_pizza, color: color, size: 150,)),
+      backgroundColor: color,
+      body: Center(child: Icon(Icons.local_pizza, color: Colors.white, size: 150,)),
     );
   }
 }

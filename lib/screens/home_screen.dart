@@ -119,24 +119,46 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         itemBuilder: (context, position) {
                           return GestureDetector(
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return MealDetail(
+                                        mealType:
+                                            cardsList[position].cardTitle,
+                                        color: appColors[position],
+                                      );
+                                    },
+                                  ),
+                                );
+                              },
                               child: Card(
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0)),
+                                    borderRadius:
+                                        BorderRadius.circular(15.0)),
                                 child: Container(
-                                  width: MediaQuery.of(context).size.width / 1.5,
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.5,
                                   child: Column(
                                     // crossAxisAlignment:CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Row(
-                                          mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: <Widget>[
                                             Icon(
                                               cardsList[position].icon,
-                                              color: cardsList[position].taskCompletion == true ? appColors[position] : Colors.grey,
+                                              color: cardsList[position]
+                                                          .taskCompletion ==
+                                                      true
+                                                  ? appColors[position]
+                                                  : Colors.grey,
                                               size: 45,
                                             ),
                                             Icon(
@@ -149,7 +171,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Padding(
                                               padding:
@@ -167,16 +190,24 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 8.0,
                                                       vertical: 4.0),
-                                              child: Text(
-                                                "${cardsList[position].cardTitle}",
-                                                style: TextStyle(fontSize: 28.0),
+                                              child: Hero(
+                                                tag: cardsList[position].cardTitle,
+                                                child: Text(
+                                                  "${cardsList[position].cardTitle}",
+                                                  style:
+                                                      TextStyle(fontSize: 28.0),
+                                                ),
                                               ),
                                             ),
                                             Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: LinearProgressIndicator(
-                                                value: cardsList[position].taskCompletion == true ? 1 : 0,
+                                                value: cardsList[position]
+                                                            .taskCompletion ==
+                                                        true
+                                                    ? 1
+                                                    : 0,
                                               ),
                                             ),
                                           ],
@@ -187,18 +218,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 ),
                               ),
                             ),
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return MealDetail(
-                                      mealType: cardsList[position].cardTitle,
-                                      color: appColors[position],
-                                      );
-                                  },
-                                ),
-                              );
-                            },
+                              ),
+                            // onTap: () {
+                            //   Navigator.of(context).push(
+                            //     MaterialPageRoute(
+                            //       builder: (context) {
+                            //         return MealDetail(
+                            //           mealType: cardsList[position].cardTitle,
+                            //           color: appColors[position],
+                            //           );
+                            //       },
+                            //     ),
+                            //   );
+                            // },
                             onHorizontalDragEnd: (details) {
                               animationController = AnimationController(
                                   duration: Duration(milliseconds: 275),
@@ -208,7 +240,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   curve: Curves.fastOutSlowIn);
                               animationController.addListener(() {
                                 setState(() {
-                                  currentColor = colorTween.evaluate(curvedAnimation);
+                                  currentColor =
+                                      colorTween.evaluate(curvedAnimation);
                                 });
                               });
 
@@ -228,7 +261,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 }
                               }
                               setState(() {
-                                scrollController.animateTo((cardIndex) * MediaQuery.of(context).size.width / 1.5,
+                                scrollController.animateTo(
+                                    (cardIndex) *
+                                        MediaQuery.of(context).size.width /
+                                        1.5,
                                     duration: Duration(milliseconds: 350),
                                     curve: Curves.fastOutSlowIn);
                               });
@@ -244,36 +280,34 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ],
                 )
               ],
-            )
-            ),
-          )
-        ),
+            )),
+          )),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.grey[800],
         elevation: 0,
         backgroundColor: Colors.transparent,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.business),
-          title: Text('Business'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          title: Text('Home'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.school),
-          title: Text('School'),
-        ),
-      ],
-      currentIndex: navIndex,
-      selectedItemColor: Colors.grey[200],
-      onTap: (int newIndex) {
-        setState(() {
-          navIndex = newIndex;
-        });
-      },
-    ),
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            title: Text('Business'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            title: Text('School'),
+          ),
+        ],
+        currentIndex: navIndex,
+        selectedItemColor: Colors.grey[200],
+        onTap: (int newIndex) {
+          setState(() {
+            navIndex = newIndex;
+          });
+        },
+      ),
     );
   }
 }

@@ -15,8 +15,8 @@ jobs:
       image:  google/dart:latest
 
     steps:
-    - name: Flutter action
     - uses: actions/checkout@v1
+    - name: Flutter action
     - uses: actions/setup-java@v1
       with:
         java-version: '12.x'

@@ -43,15 +43,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     "Thursday",
     "Friday",
     "Saturday",
+    "Sunday"
   ];
+  
   static int cardIndex = 0;
   ScrollController scrollController;
   Color currentColor = appColors[cardIndex];
   static DateTime now = DateTime.now();
-  static var numDay = now.day;
-  String curDay = day[(numDay - 1) % 7];
+  static int numDay = now.day;
+  String curDay = day[now.weekday - 1];
   String curMonth = month[now.month - 1];
-
   int navIndex = 1;
 
   var cardsList = [
